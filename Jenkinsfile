@@ -1,23 +1,28 @@
 pipeline
 {
-agent any      // if agent is declared before stages, means it is a global agent, 
-               // here "any" means run follwing stages on any available executor
+agent any
+stages
+{
+   stage('Clone_the_code')
+   { steps { echo 'code is downloading'  } }
 
-stages         // it contains all the stages
- {
-    stage('stage-1')
-    { steps                                  //how to perform stage-1
-      {  sh 'echo hi, this is jenkins'       // jenkins executes steps in sequence
-         sh 'echo hi, this is prakash'  }    // sh represents to linux shell where you can the job
-    } 
+   stage('Execute unit test case')
+   { steps { echo "Execute unit test case" }  }
 
-    stage('stage-2-code build')              //jenkins executes stages in sequence
-    { steps 
-       { sh 'echo code_is_building' }
-    }
+   stage('Execute unit test cases')
+   { steps { echo "Execute unit test cases" }  }
 
+   stage('Building code')
+   { steps { echo "Building code" }  }
 
-    
- }
+   stage('Deploy package to a dev server')
+   { steps { echo "Deploy package to a dev server" }  }
+
+   stage('Deploy package to a qa server')
+   { steps { echo "Deploy package to a qa server" }  }
+
+   stage('Deploy package to a prod server')
+   { steps { echo "Deploy package to a prod server" }  }
 
 }
+
