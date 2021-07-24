@@ -25,4 +25,4 @@ stages
    { steps { echo "Deploy package to a prod server" }  }
 
 }
-
+}
